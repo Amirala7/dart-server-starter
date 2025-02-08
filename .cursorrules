@@ -1,0 +1,173 @@
+# Backend Project Structure Rules
+
+You are my agent for creating a robust dart backend application.
+Always start answering with "Ok Ami,"
+
+## Directory Structure
+
+lib/
+├── config/          # Configuration files (database, environment)
+├── modules/         # API modules, controllers, repositories, etc.
+├── middleware/      # Middleware components
+│   └── use_cases/  # Business logic use cases
+├── models/          # Data models
+├── routes/          # API routes
+├── services/        # Business logic services
+└── utils/           # Utility functions
+
+## Naming Conventions
+
+1. Files:
+   - Use snake_case
+   - End with descriptive suffixes (_service.dart, _controller.dart, _middleware.dart)
+   - Example: auth_middleware.dart, database_service.dart
+
+2. Classes:
+   - Use PascalCase
+   - End with descriptive suffixes (Service, Controller, Middleware)
+   - Example: AuthService, DatabaseController, LoggerMiddleware
+
+3. Variables/Functions:
+   - Use camelCase
+   - Methods should be action-oriented
+   - Example: validateToken(), createUser()
+
+## Code Organization
+
+1. Services:
+   - One service per file
+   - Services handle business logic
+   - Inject dependencies through constructors
+   - Example: AuthService, UserService
+
+2. Middleware:
+   - One middleware per file
+   - Return Middleware type
+   - Handle cross-cutting concerns
+   - Example: authMiddleware(), loggerMiddleware()
+
+3. Modules:
+   - One controller per file
+   - One repository per file
+   - Use case files for business logic
+   - Handle related endpoints
+   - Example: root_controller.dart
+
+4. Routes:
+   - Group related routes
+   - Use shelf_router
+   - Clear endpoint naming
+
+
+## Best Practices
+
+1. Dependency Injection:
+   - Use service_locator.dart for dependency management
+   - Register services as singletons or lazy singletons
+   - Inject dependencies through constructors
+
+2. Error Handling:
+   - Use proper HTTP status codes
+   - Return consistent error responses
+   - Log errors appropriately
+
+3. Environment Variables:
+   - Use .env for configuration
+   - Access through EnvService
+   - Never commit sensitive values
+
+4. Database:
+   - Use repository pattern
+   - Handle connections properly
+   - Implement proper cleanup
+
+5. Logging:
+   - Use consistent log levels
+   - Include relevant context
+   - Structured logging format
+
+## Security Rules
+
+1. Authentication:
+   - Implement token validation
+   - Secure sensitive routes
+   - Use proper middleware
+
+2. Environment:
+   - No hardcoded credentials
+   - Use environment variables
+   - Validate required variables
+
+## Testing Guidelines
+
+1. Unit Tests:
+   - Test individual components
+   - Mock dependencies
+   - Clear test names
+
+2. Integration Tests:
+   - Test API endpoints
+   - Test database operations
+   - Test middleware chain
+
+## Documentation
+
+1. Code Comments:
+   - Document public APIs
+   - Explain complex logic
+   - Use /// for documentation comments
+
+2. README:
+   - Setup instructions
+   - API documentation
+   - Environment variables
+
+## Version Control
+
+1. Commits:
+   - Clear commit messages
+   - Single responsibility
+   - Reference issues
+
+2. Branches:
+   - feature/
+   - bugfix/
+   - release/
+
+## Deployment
+
+1. Scripts:
+   - deploy_local.sh
+   - deploy_digitalocean.sh
+   - Clear deployment steps
+
+## Error Messages
+
+1. Format:
+   - Clear description
+   - Relevant context
+   - Actionable information
+
+## Performance
+
+1. Database:
+   - Connection pooling
+   - Query optimization
+   - Proper indexing
+
+2. API:
+   - Response caching
+   - Pagination
+   - Rate limiting
+
+## Monitoring
+
+1. Logging:
+   - Request/Response logging
+   - Error tracking
+   - Performance metrics
+
+2. Health Checks:
+   - Database connectivity
+   - Service status
+   - Resource usage
